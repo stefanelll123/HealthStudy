@@ -1,0 +1,303 @@
+{
+	"info": {
+		"_postman_id": "1c9ee906-d6be-443c-88f8-387de0e30fa3",
+		"name": "health-study",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Stefan\",\r\n    \"lastName\": \"Turcu\",\r\n    \"email\": \"stefan2@gmail.com\",\r\n    \"cnp\": \"1111111111111\",\r\n    \"password\": \"stefan123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8801/api/v1/identity/register",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8801",
+					"path": [
+						"api",
+						"v1",
+						"identity",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"stefan@gmail.com\",\r\n    \"password\": \"stefan123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8801/api/v1/identity/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8801",
+					"path": [
+						"api",
+						"v1",
+						"identity",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create study",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MjZhZGIzNjI3Yzc0NzY3YmYwNTU3NjQiLCJuYW1lIjoic3RlZmFuQGdtYWlsLmNvbSJ9.D7V9iLsRfnKJOCtPyXlUq-PULZssR6wqTgU-GkxQMnI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Vaccin covid\",\r\n    \"medicationTested\": \"Phizer Bio&Tech vaccine version 1.0.1\",\r\n    \"startDate\": \"01-01-2022\",\r\n    \"numberOfParticipans\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8801/api/v1/studies",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8801",
+					"path": [
+						"api",
+						"v1",
+						"studies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get studies",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MjZhZGIzNjI3Yzc0NzY3YmYwNTU3NjQiLCJuYW1lIjoic3RlZmFuQGdtYWlsLmNvbSJ9.D7V9iLsRfnKJOCtPyXlUq-PULZssR6wqTgU-GkxQMnI",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8801/api/v1/studies",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8801",
+					"path": [
+						"api",
+						"v1",
+						"studies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get study by id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MjZhZGIzNjI3Yzc0NzY3YmYwNTU3NjQiLCJuYW1lIjoic3RlZmFuQGdtYWlsLmNvbSJ9.D7V9iLsRfnKJOCtPyXlUq-PULZssR6wqTgU-GkxQMnI",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8801/api/v1/studies/626ade1f632278e0dcc773fb",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8801",
+					"path": [
+						"api",
+						"v1",
+						"studies",
+						"626ade1f632278e0dcc773fb"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Complete study",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MjZhZGIzNjI3Yzc0NzY3YmYwNTU3NjQiLCJuYW1lIjoic3RlZmFuQGdtYWlsLmNvbSJ9.D7V9iLsRfnKJOCtPyXlUq-PULZssR6wqTgU-GkxQMnI",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8801/api/v1/studies/626ade1f632278e0dcc773fb/complete",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8801",
+					"path": [
+						"api",
+						"v1",
+						"studies",
+						"626ade1f632278e0dcc773fb",
+						"complete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add note to study",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MjZhZGIzNjI3Yzc0NzY3YmYwNTU3NjQiLCJuYW1lIjoic3RlZmFuQGdtYWlsLmNvbSJ9.D7V9iLsRfnKJOCtPyXlUq-PULZssR6wqTgU-GkxQMnI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\": \"Pare sanatos tare, acum merge treaba, ce sa zic\",\r\n    \"creationDate\": \"01-01-2022\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8801/api/v1/studies/626ade1f632278e0dcc773fb/notes",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8801",
+					"path": [
+						"api",
+						"v1",
+						"studies",
+						"626ade1f632278e0dcc773fb",
+						"notes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete study",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MjZhZGIzNjI3Yzc0NzY3YmYwNTU3NjQiLCJuYW1lIjoic3RlZmFuQGdtYWlsLmNvbSJ9.D7V9iLsRfnKJOCtPyXlUq-PULZssR6wqTgU-GkxQMnI",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8801/api/v1/studies/626adcedcf9c2d450e959172",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8801",
+					"path": [
+						"api",
+						"v1",
+						"studies",
+						"626adcedcf9c2d450e959172"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
