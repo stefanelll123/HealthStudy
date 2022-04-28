@@ -21,8 +21,8 @@ class Result:
         if self.hasErrors:
             return Response('{"error": "%s"}' % (self.message), status=self.statusCode)
         
-        #if isinstance(self.value, list):
-        #    return Response([str(x) for x in self.value], status=self.statusCode)
+        if isinstance(self.value, list):
+            return Response(json.dumps([x.__dict__ for x in self.value]), status=self.statusCode)
 
         print(str(self.value))
         return Response(str(self.value) if self.value != None else '', status=self.statusCode)

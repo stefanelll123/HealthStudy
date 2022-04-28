@@ -11,3 +11,17 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=admin
+
+  backend:
+    container_name: backend
+    build: ./backend
+    restart: always
+    ports:
+      - 8801:8801
+    volumes:
+      - /c/health-study/volumes/backend:/container_dir
+    environment:
+      CONNECTION_STRING: mongodb://admin:admin@mongodb:27017/
+      SECRET: HealthStudy
+      LOG_FOLDER: logs/health-study.log
+      LOG_LEVEL: DEBUG

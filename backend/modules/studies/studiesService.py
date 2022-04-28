@@ -19,7 +19,7 @@ def createStudy(study):
     return Result()
 
 def getStudies():
-    results = [toStudyResponse(x).__dict__ for x in list(studies.find({"isDeleted": {"$ne": True}}))]
+    results = [toStudyResponse(x) for x in list(studies.find({"isDeleted": {"$ne": True}}))]
     
     return Result(results)
 
@@ -28,7 +28,7 @@ def getStudy(id):
     if study == None:
         return Result.error('Cannot find study with id %s' % (id), 404)
     
-    return Result(toStudyResponse(study).__dict__)
+    return Result(toStudyResponse(study))
 
 def markStudyAsComplete(id):
     study = studies.find_one_and_update({"_id": ObjectId(id)}, {"$set": {"isActive": False}})

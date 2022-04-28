@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 from dotenv import load_dotenv
 
 from flask import make_response, jsonify
@@ -12,6 +13,9 @@ load_dotenv()
 configureLogging()
 
 app = Flask(__name__)
+CORS(app, resources={r"/api/*": {"origins": "*"}})
+
+app.config['CORS_HEADERS'] = 'Content-Type'
 app.register_blueprint(identityBlueprint, url_prefix='/api/v1/identity')
 app.register_blueprint(studiesBlueprint, url_prefix='/api/v1/studies')
 
