@@ -7,10 +7,8 @@ from jsonschema import ValidationError
 
 from modules.identity.identityController import identityBlueprint
 from modules.studies.studiesController import studiesBlueprint
-from utils.logging import configureLogging
 
 load_dotenv()
-configureLogging()
 
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
