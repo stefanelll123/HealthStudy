@@ -1,0 +1,36 @@
+@import "../../../assets/scss/mixins";
+@import "../../../assets/scss/variables.scss";
+
+aside {
+  padding: 20px 30px;
+  transform: translateX(-50%);
+  color: white;
+  box-shadow: 0px 7px 14px #0000001a;
+  border-radius: 5px;
+  transition: all 0.33s ease-in-out;
+  opacity: 0;
+  z-index: 100000000;
+  @include flex(center);
+  @include position(fixed, -50px null null 50%);
+  font-size: 16px;
+
+  &.active {
+    top: $gutter;
+    opacity: 1;
+  }
+
+  img {
+    margin-top: -1px;
+    margin-right: $gutter;
+    width: 19px;
+  }
+}
+
+.toast {
+  &-success {
+    background: $color-success 0% 0% no-repeat padding-box;
+  }
+  &-danger {
+    background: $color-danger 0% 0% no-repeat padding-box;
+  }
+}

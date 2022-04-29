@@ -1,0 +1,207 @@
+<div class="login flex relative">
+  <img class="logo absolute" src="../../../../assets/icons/logo.svg" alt="" />
+  <div class="main-section flex column al-center center">
+    <img src="../../../../assets/icons/register.svg" alt="" />
+    <p class="title">Register</p>
+    <form action="" [formGroup]="form" class="flex column">
+      <div class="form-group relative">
+        <input
+          type="text"
+          placeholder="First name"
+          formControlName="firstName"
+          [ngClass]="{
+            error: isFormSubmitted && !!this.form.get('firstName').errors
+          }"
+        />
+        <ng-container *ngIf="isFormSubmitted">
+          <p
+            *ngIf="form.get('firstName').hasError('required')"
+            class="form-error"
+          >
+            {{ errors.required }}
+          </p>
+          <p
+            *ngIf="form.get('firstName').hasError('minlength')"
+            class="form-error"
+          >
+            {{
+              errors.minLength +
+                " " +
+                form.controls["firstName"].errors["minlength"].requiredLength +
+                " characters"
+            }}
+          </p>
+        </ng-container>
+      </div>
+
+      <div class="form-group relative">
+        <input
+          type="text"
+          placeholder="Last name"
+          formControlName="lastName"
+          [ngClass]="{
+            error: isFormSubmitted && !!this.form.get('lastName').errors
+          }"
+        />
+        <ng-container *ngIf="isFormSubmitted">
+          <p
+            *ngIf="form.get('lastName').hasError('required')"
+            class="form-error"
+          >
+            {{ errors.required }}
+          </p>
+          <p
+            *ngIf="form.get('lastName').hasError('minlength')"
+            class="form-error"
+          >
+            {{
+              errors.minLength +
+                " " +
+                form.controls["lastName"].errors["minlength"].requiredLength +
+                " characters"
+            }}
+          </p>
+        </ng-container>
+      </div>
+
+      <div class="form-group relative">
+        <input
+          type="text"
+          placeholder="Personal identification"
+          formControlName="cnp"
+          [ngClass]="{
+            error: isFormSubmitted && !!this.form.get('cnp').errors
+          }"
+        />
+        <ng-container *ngIf="isFormSubmitted">
+          <p *ngIf="form.get('cnp').hasError('required')" class="form-error">
+            {{ errors.required }}
+          </p>
+          <p
+            *ngIf="
+              form.get('cnp').hasError('minlength') ||
+              form.get('cnp').hasError('maxlength')
+            "
+            class="form-error"
+          >
+            {{
+              errors.fixedLength +
+                " " +
+                (form.controls["cnp"].errors["minlength"]
+                  ? form.controls["cnp"].errors["minlength"].requiredLength
+                  : form.controls["cnp"].errors["maxlength"].requiredLength) +
+                " characters"
+            }}
+          </p>
+        </ng-container>
+      </div>
+
+      <div class="form-group relative">
+        <input
+          type="text"
+          placeholder="Email"
+          formControlName="email"
+          [ngClass]="{
+            error: isFormSubmitted && !!this.form.get('email').errors
+          }"
+        />
+        <ng-container *ngIf="isFormSubmitted">
+          <p *ngIf="form.get('email').hasError('required')" class="form-error">
+            {{ errors.required }}
+          </p>
+          <p *ngIf="form.get('email').hasError('minlength')" class="form-error">
+            {{
+              errors.minLength +
+                " " +
+                form.controls["email"].errors["minlength"].requiredLength +
+                " characters"
+            }}
+          </p>
+          <p *ngIf="form.get('email').hasError('email')" class="form-error">
+            {{ errors.email }}
+          </p>
+        </ng-container>
+      </div>
+
+      <div class="form-group relative">
+        <input
+          type="password"
+          placeholder="Password"
+          formControlName="password"
+          [ngClass]="{
+            error: isFormSubmitted && !!this.form.get('password').errors
+          }"
+        />
+        <ng-container *ngIf="isFormSubmitted">
+          <p
+            *ngIf="form.get('password').hasError('required')"
+            class="form-error"
+          >
+            {{ errors.required }}
+          </p>
+          <p
+            *ngIf="form.get('password').hasError('minlength')"
+            class="form-error"
+          >
+            {{
+              errors.minLength +
+                " " +
+                form.controls["password"].errors["minlength"].requiredLength +
+                " characters"
+            }}
+          </p>
+        </ng-container>
+      </div>
+
+      <div class="form-group relative">
+        <input
+          type="password"
+          placeholder="Confirm password"
+          formControlName="confirmPassword"
+          [ngClass]="{
+            error: isFormSubmitted && !!this.form.get('confirmPassword').errors
+          }"
+        />
+        <ng-container *ngIf="isFormSubmitted">
+          <p
+            *ngIf="form.get('confirmPassword').hasError('required')"
+            class="form-error"
+          >
+            {{ errors.required }}
+          </p>
+          <p
+            *ngIf="form.get('confirmPassword').hasError('confirmMatch')"
+            class="form-error"
+          >
+            {{ errors.samePasswords }}
+          </p>
+        </ng-container>
+      </div>
+
+      <div class="form-group relative">
+        <input type="checkbox" formControlName="acceptTermsAndConditions" />
+        <span>Accept terms and conditions</span>
+        <ng-container *ngIf="isFormSubmitted">
+          <p
+            *ngIf="form.get('acceptTermsAndConditions').hasError('required')"
+            class="form-error"
+          >
+            {{ errors.requiredCheck }}
+          </p>
+        </ng-container>
+      </div>
+
+      <button class="btn btn-primary" (click)="submit()">Register</button>
+    </form>
+  </div>
+  <div class="title-section flex column center al-center">
+    <div>
+      <div class="title">
+        Healthy isn't a goal,
+        <div>it's a way of</div>
+        <div>living</div>
+      </div>
+      <img src="../../../../assets/icons/doctors-and-pills.svg" alt="" />
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+@import "../../../../assets/scss/variables.scss";
+
+.login {
+  height: 100vh;
+
+  .logo {
+    top: 20px;
+    left: 40px;
+  }
+
+  .main-section {
+    min-width: 500px;
+    z-index: $z-index-top;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
+      rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+
+    .title {
+      font-size: 32px;
+      margin: 10px 0 40px 0;
+    }
+  }
+
+  .title-section {
+    width: 100%;
+    background: $color-secondary;
+
+    .title {
+      font-size: 60px;
+      text-align: right;
+      margin-bottom: 50px;
+      color: $color-primary;
+
+      div {
+        color: $color-text;
+      }
+    }
+  }
+}

@@ -1,0 +1,59 @@
+@mixin bp-up($breakpoint) {
+  @media screen and (min-width: #{$breakpoint + 'px'}) {
+    @content;
+  }
+}
+
+@mixin bp-down($breakpoint) {
+  @media screen and (max-width: #{$breakpoint + 'px'}) {
+    @content;
+  }
+}
+
+@mixin position($position, $coordinates: null null null null) {
+  position: $position;
+  top: nth($coordinates, 1);
+  right: nth($coordinates, 2);
+  bottom: nth($coordinates, 3);
+  left: nth($coordinates, 4);
+}
+
+// Apply ‘attention’ styles in one go.
+@mixin attention($self: false) {
+  @if ($self != false) {
+    &,
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  } @else {
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  }
+}
+
+@mixin flex($align: null, $justify: null) {
+  display: flex;
+
+  @if ($align != null) {
+    align-items: $align;
+  }
+
+  @if ($justify != null) {
+    justify-content: $justify;
+  }
+}
+
+@mixin size($width: null, $height: null) {
+  @if ($width != null) {
+    width: $width;
+  }
+
+  @if ($height != null) {
+    height: $height;
+  }
+}

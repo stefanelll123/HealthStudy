@@ -1,0 +1,19 @@
+<aside
+  [ngClass]="{
+    active: data,
+    'toast-success': !data?.error,
+    'toast-danger': data?.error
+  }"
+>
+  <ng-container *ngIf="data">
+    <img
+      [src]="
+        data?.error
+          ? '../../assets/icons/cancel.svg'
+          : '../../assets/icons/checkmark.svg'
+      "
+      alt=""
+    />
+    <p>{{ data.message }}</p>
+  </ng-container>
+</aside>

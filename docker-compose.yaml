@@ -25,3 +25,10 @@ services:
       SECRET: HealthStudy
       LOG_FOLDER: logs/health-study.log
       LOG_LEVEL: DEBUG
+
+  frontend:
+    container_name: frontend
+    build: ./frontend
+    restart: always
+    ports:
+      - 4200:4200

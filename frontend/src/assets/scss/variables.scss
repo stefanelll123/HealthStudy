@@ -1,0 +1,41 @@
+$color-primary: #1e90ff;
+$color-primary-1: #1b81e5;
+$color-secondary: #f1f2f6;
+$color-text: #1c1c1c;
+$color-border: #ced6e0;
+$color-danger: #ee2929;
+$color-success: #6ab961;
+
+$gutter: 10px;
+
+$xs: 500;
+$sm: 768;
+$md: 992;
+$lg: 1280;
+$xl: 1440;
+
+$z-index-bottom: -1;
+$z-index-top: 1;
+$z-index-over-top: 2;
+$z-index-menu: 10000;
+$z-index-overlay: 100000;
+$z-index-popup: 1000000;
+$z-index-toast: 10000000;
+
+$prefix: "--"; // Prefix string for custom CSS properties
+
+// Merges a variable name with $prefix
+@function custom-property-name($name) {
+  @return $prefix + $name;
+}
+
+// Defines a custom property
+@mixin define-custom-property($name, $value) {
+  #{custom-property-name($name)}: $value;
+}
+
+body {
+  // Append SASS variables which are desired to be accesible from Components via Sass Helper Component
+  @include define-custom-property("bp-md", $md);
+  @include define-custom-property("color-text", $color-text);
+}

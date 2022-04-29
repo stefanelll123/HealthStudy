@@ -1,0 +1,17 @@
+@import '~assets/icomoon/style.css';
+
+.icon {
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+    &-dropdown {
+        font-weight: bold;
+
+        &-up {
+            transform: rotate(180deg) translateY(-3px);
+        }
+    }
+}

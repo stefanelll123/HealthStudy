@@ -1,0 +1,75 @@
+<div class="login flex relative">
+  <img class="logo absolute" src="../../../../assets/icons/logo.svg" alt="" />
+  <div class="main-section flex column al-center center">
+    <img src="../../../../assets/icons/login.svg" alt="" />
+    <p class="title">Hello again!</p>
+    <form action="" [formGroup]="form">
+      <div class="form-group relative">
+        <input
+          type="text"
+          placeholder="Email"
+          formControlName="email"
+          [ngClass]="{
+            error: isFormSubmitted && !!this.form.get('email').errors
+          }"
+        />
+        <ng-container *ngIf="isFormSubmitted">
+          <p *ngIf="form.get('email').hasError('required')" class="form-error">
+            {{ errors.required }}
+          </p>
+          <p *ngIf="form.get('email').hasError('email')" class="form-error">
+            {{ errors.email }}
+          </p>
+        </ng-container>
+      </div>
+
+      <div class="form-group relative">
+        <input
+          type="password"
+          placeholder="Password"
+          formControlName="password"
+          [ngClass]="{
+            error: isFormSubmitted && !!this.form.get('password').errors
+          }"
+        />
+        <ng-container *ngIf="isFormSubmitted">
+          <p
+            *ngIf="form.get('password').hasError('required')"
+            class="form-error"
+          >
+            {{ errors.required }}
+          </p>
+          <p
+            *ngIf="form.get('password').hasError('minlength')"
+            class="form-error"
+          >
+            {{
+              errors.minLength +
+                " " +
+                form.controls["password"].errors["minlength"].requiredLength +
+                " characters"
+            }}
+          </p>
+        </ng-container>
+      </div>
+
+      <button class="btn btn-primary" (click)="submit()">Login</button>
+    </form>
+    <div>
+      Don't have an account yet?
+      <span>
+        <a [routerLink]="'/register'">Sign up</a>
+      </span>
+    </div>
+  </div>
+  <div class="title-section flex column center al-center">
+    <div>
+      <div class="title">
+        Healthy isn't a goal,
+        <div>it's a way of</div>
+        <div>living</div>
+      </div>
+      <img src="../../../../assets/icons/doctors-and-pills.svg" alt="" />
+    </div>
+  </div>
+</div>
