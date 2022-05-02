@@ -1,7 +1,0 @@
-version: 'v2.2.3' 
-
-services:
-  angular: 
-    build: frontend
-    ports:
-      - "4200:4200"
