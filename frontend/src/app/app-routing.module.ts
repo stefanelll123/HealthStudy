@@ -5,7 +5,9 @@ import { AuthStackGuard } from './features/auth/auth-stack.guard';
 import { AuthGuard } from './features/auth/auth.guard';
 import { LoginComponent } from './features/auth/login/login.component';
 import { RegisterComponent } from './features/auth/register/register.component';
+import { FeedbackComponent } from './features/feedback/feedback.component';
 import { HomeComponent } from './features/home/home.component';
+import { StudiesComponent } from './features/studies/studies.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent, canActivate: [AuthStackGuard]},
@@ -19,6 +21,14 @@ const routes: Routes = [
       {
         path: 'home',
         component: HomeComponent
+      },
+      {
+        path: 'studies',
+        component: StudiesComponent
+      },
+      {
+        path: 'feedback',
+        component: FeedbackComponent
       },
     ]
   }

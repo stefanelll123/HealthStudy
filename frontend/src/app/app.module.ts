@@ -10,13 +10,21 @@ import { AuthModule } from './features/auth/auth.module';
 import { MainLayoutComponent } from './components/main-layout/main-layout.component';
 import { ToastComponent } from './components/toast/toast.component';
 import { HomeComponent } from './features/home/home.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { HeaderComponent } from './components/header/header.component';
+import { StudiesComponent } from './features/studies/studies.component';
+import { FeedbackComponent } from './features/feedback/feedback.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainLayoutComponent,
     ToastComponent,
-    HomeComponent
+    HomeComponent,
+    MenuComponent,
+    HeaderComponent,
+    StudiesComponent,
+    FeedbackComponent
   ],
   imports: [
     HttpClientModule,

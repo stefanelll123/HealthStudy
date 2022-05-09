@@ -9,6 +9,10 @@
         align-items: flex-end;
     }
 
+    &.al-stretch {
+        align-items: stretch;
+    }
+
     &.center {
         justify-content: center;
     }

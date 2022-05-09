@@ -1,0 +1,24 @@
+<div class="menu flex column al-center spaced">
+  <div class="menu-first">
+    <div class="menu-title">Menu</div>
+    <div class="menu-container flex column center al-center">
+      <a
+        *ngFor="let item of menu"
+        [routerLink]="item.link"
+        [ngClass]="{ 'menu-item-selected': router.url.includes(item.link) }"
+        class="flex al-center"
+      >
+        <span class="icon" [ngClass]="'icon-' + item.icon"></span>
+        <span>{{ item.name }}</span>
+      </a>
+    </div>
+  </div>
+  <div class="menu-second">
+    <div class="menu-container">
+      <button class="flex al-center" (click)="logout()">
+        <span class="icon icon-logout"></span>
+        <span>Logout</span>
+      </button>
+    </div>
+  </div>
+</div>

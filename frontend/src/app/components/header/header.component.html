@@ -1,0 +1,7 @@
+<div class="flex spaced al-center header">
+  <img src="../../../../assets/icons/logo.svg" alt="" />
+  <div *ngIf="userService.currentUser as user" class="flex al-center profile">
+    <img src="../../../../assets/icons/user-profile.svg" alt="" />
+    <span>{{ user.firstName + " " + user.lastName }}</span>
+  </div>
+</div>
