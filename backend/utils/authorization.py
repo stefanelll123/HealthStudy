@@ -24,6 +24,10 @@ def authorizeDoctor():
         def __authorizeDoctor(*args, **kwargs):
             unauthorizedResponse = Response('{"error": "%s"}' % ("Unable to perform this operation."), 401)
             token = request.headers.get('Authorization')
+            if ' ' not in token:
+                return unauthorizedResponse
+                
+            token = token.split(' ')[1]
             if token == None:
                 return unauthorizedResponse
             userId = None
