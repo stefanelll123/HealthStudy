@@ -24,12 +24,14 @@ def authorizeDoctor():
         def __authorizeDoctor(*args, **kwargs):
             unauthorizedResponse = Response('{"error": "%s"}' % ("Unable to perform this operation."), 401)
             token = request.headers.get('Authorization')
+            if token == None:
+                return unauthorizedResponse
+            
             if ' ' not in token:
                 return unauthorizedResponse
                 
             token = token.split(' ')[1]
-            if token == None:
-                return unauthorizedResponse
+            
             userId = None
             try:
                 userId = jwt.decode(token, key, algorithms=['HS256'])['sub']
