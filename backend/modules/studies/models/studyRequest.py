@@ -10,13 +10,13 @@ class StudyRequest():
         self.startDate = datetime.strptime(dictionary.get('startDate'), DATE_FORMAT)
         self.numberOfParticipans = dictionary.get('numberOfParticipans')
         self.participants = []
-        self.flacons = []
+        self.flacons = dictionary.get('flacons')
         self.notes = []
+        self.feedback = []
         self.isActive = True
     
     def __str__(self):
         return json.dumps(self.__dict__)
-
 schema = {
     'type': 'object',
     'properties': {

@@ -4,7 +4,8 @@ from flask_expects_json import expects_json
 from utils.authorization import authorizeDoctor
 
 from modules.studies.models.studyRequest import StudyRequest, schema as studySchema
-from modules.studies.models.noteRequest import NoteRequest, schema as noteSchema
+from modules.studies.models.noteRequest import NoteRequest, schema as noteSchema 
+from modules.studies.models.feedbackRequest import FeedbackRequest, schema as feedbackSchema
 import modules.studies.studiesService as studiesService
 
 studiesBlueprint = Blueprint('studies', __name__)
@@ -52,5 +53,13 @@ def markStudyAsComplete(id):
 def addNoteToStudy(id):
     note = NoteRequest(request.json)
     response = studiesService.addNoteToStudy(id, note)
+    
+    return response.makeResponse()
+
+@studiesBlueprint.route('<id>/feedback', methods = ['POST'])
+@expects_json(feedbackSchema)
+def addFeedbackToStudy(id):
+    note = FeedbackRequest(request.json)
+    response = studiesService.addFeedbackToStudy(id, note)
     
     return response.makeResponse()

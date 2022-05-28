@@ -1,4 +1,5 @@
 import logging
+import json
 from bson import ObjectId
 
 from utils.databaseContext import studiesDatabase
@@ -16,7 +17,7 @@ def createStudy(study):
     studyId = studies.insert_one(study.__dict__)
     logging.debug('New study with id %s inserted' % str(studyId.inserted_id))
     
-    return Result()
+    return Result(json.dumps({"studyId": str(studyId.inserted_id)}))
 
 def getStudies():
     results = [toStudyResponse(x) for x in list(studies.find({"isDeleted": {"$ne": True}}))]
@@ -44,6 +45,13 @@ def addNoteToStudy(id, note):
     
     return Result()
 
+def addFeedbackToStudy(id, note):
+    study = studies.find_one_and_update({"_id": ObjectId(id)}, {"$addToSet": {"feedback": note.__dict__}})
+    if study == None:
+        return Result('Cannot find study with id %s to add a feedback' % id, 404)
+    
+    return Result()
+
 def markStudyAsDeleted(id):
     study = studies.find_one_and_update({"_id": ObjectId(id)}, {"$set": {"isDeleted": True}})
     if study == None:
@@ -54,4 +62,4 @@ def markStudyAsDeleted(id):
 def toStudyResponse(databaseStudy):
     return StudyResponse(databaseStudy["_id"], databaseStudy["name"], databaseStudy["medicationTested"], databaseStudy["startDate"],
                          databaseStudy["numberOfParticipans"], databaseStudy["participants"], databaseStudy["flacons"],
-                         databaseStudy["notes"], databaseStudy["isActive"])
+                         databaseStudy["notes"], databaseStudy.get("feedback"), databaseStudy["isActive"])

@@ -3,7 +3,7 @@ from datetime import datetime
 from utils.constants import DATE_FORMAT
 
 class StudyResponse():
-    def __init__(self, id, name, medicationTested, startDate, numberOfParticipans, participants, flacons, notes, isActive):
+    def __init__(self, id, name, medicationTested, startDate, numberOfParticipans, participants, flacons, notes, feedback, isActive):
         self.id = str(id)
         self.name = name
         self.medicationTested = medicationTested
@@ -15,6 +15,11 @@ class StudyResponse():
         for note in notes:
             note['creationDate'] = note['creationDate'].strftime(DATE_FORMAT)
             self.notes.append(note)
+        self.feedback = []
+        if feedback != None:
+            for f in feedback:
+                f['creationDate'] = f['creationDate'].strftime(DATE_FORMAT)
+                self.feedback.append(note)
         self.isActive = isActive
     
     def __str__(self):
