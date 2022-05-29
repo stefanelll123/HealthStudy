@@ -19,21 +19,19 @@ def createStudy(study):
     if databaseStudy != None:
         return Result.error("One study with name %s and medicationTested %s already exists." % (study.name, study.medicationTested))
     
-    userIds = identityService.getUserIds(len(study.flacons)).value
+    users = identityService.getUsersForStudy(len(study.flacons)).value
     flacons = list(study.flacons)
     random.shuffle(flacons)
     
-    print(len(userIds))
-    print(len(flacons))
-    
-    for index in range(0, len(userIds)):
-        study.participants.append({"userId": userIds[index], "flaconCode": flacons[index].get("flaconCode")})
+    for index in range(0, len(users)):
+        study.participants.append({"userId": str(users[index]['_id']), "userFirstName": users[index]['firstName'], "userLastName": users[index]['lastName'], "flaconCode": flacons[index].get("flaconCode")})
     
     print(study)
     
     studyId = studies.insert_one(study.__dict__)
     logging.debug('New study with id %s inserted' % str(studyId.inserted_id))
     
+    userIds = [str(x['_id']) for x in users]
     identityService.assignUsers(AssignUsersRequest({"studyId": str(studyId.inserted_id), "users": userIds}))
     
     return Result(json.dumps({"studyId": str(studyId.inserted_id)}))

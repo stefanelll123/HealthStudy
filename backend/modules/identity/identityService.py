@@ -20,7 +20,7 @@ def login(user):
     token = createToken(databaseUser['_id'], databaseUser['email'])
     isDoctor = databaseUser['role'] == ADMIN_ROLE
     
-    return Result(UserLoginResponse(token, str(databaseUser['_id']), databaseUser['email'], databaseUser['firstName'], databaseUser['lastName'], isDoctor))
+    return Result(UserLoginResponse(token, str(databaseUser['_id']), databaseUser['email'], databaseUser['firstName'], databaseUser['lastName'], isDoctor, databaseUser.get('currentStudyId')))
 
 def register(user):
     databaseUser = users.find_one({"email": user.email})
@@ -46,10 +46,10 @@ def assignUsers(request):
 
     return Result()
 
-def getUserIds(count):
-    userIds = users.find({"$or": [{"currentStudyId": {"exists": False}}, {"currentStudyId": None}], "role": USER_ROLE}).limit(count)
+def getUsersForStudy(count):
+    result = users.find({"$or": [{"currentStudyId": {"exists": False}}, {"currentStudyId": None}], "role": USER_ROLE}).limit(count)
     
-    return Result([str(x["_id"]) for x in list(userIds)])
+    return Result(list(result))
 
 def createToken(userId, email):
     token = jwt.encode(
