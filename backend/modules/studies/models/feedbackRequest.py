@@ -8,6 +8,7 @@ class FeedbackRequest():
         self.score = dictionary.get('score')
         self.content = dictionary.get('content')
         self.creationDate = datetime.strptime(dictionary.get('creationDate'), DATE_FORMAT)
+        self.userId = dictionary.get('userId')
     
     def __str__(self):
         return json.dumps(self.__dict__)

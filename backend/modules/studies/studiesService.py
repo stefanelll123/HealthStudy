@@ -1,6 +1,11 @@
 import logging
 import json
 from bson import ObjectId
+import random
+
+# TODO: improve this
+import modules.identity.identityService as identityService
+from modules.identity.models.assignUsersRequest import AssignUsersRequest
 
 from utils.databaseContext import studiesDatabase
 from utils.result import Result
@@ -14,8 +19,22 @@ def createStudy(study):
     if databaseStudy != None:
         return Result.error("One study with name %s and medicationTested %s already exists." % (study.name, study.medicationTested))
     
+    userIds = identityService.getUserIds(len(study.flacons)).value
+    flacons = list(study.flacons)
+    random.shuffle(flacons)
+    
+    print(len(userIds))
+    print(len(flacons))
+    
+    for index in range(0, len(userIds)):
+        study.participants.append({"userId": userIds[index], "flaconCode": flacons[index].get("flaconCode")})
+    
+    print(study)
+    
     studyId = studies.insert_one(study.__dict__)
     logging.debug('New study with id %s inserted' % str(studyId.inserted_id))
+    
+    identityService.assignUsers(AssignUsersRequest({"studyId": str(studyId.inserted_id), "users": userIds}))
     
     return Result(json.dumps({"studyId": str(studyId.inserted_id)}))
 

@@ -10,7 +10,6 @@ class StudyResponse():
         self.startDate = startDate.strftime(DATE_FORMAT)
         self.numberOfParticipans = numberOfParticipans
         self.participants = participants
-        self.flacons = flacons
         self.notes = []
         for note in notes:
             note['creationDate'] = note['creationDate'].strftime(DATE_FORMAT)
@@ -19,7 +18,7 @@ class StudyResponse():
         if feedback != None:
             for f in feedback:
                 f['creationDate'] = f['creationDate'].strftime(DATE_FORMAT)
-                self.feedback.append(note)
+                self.feedback.append(f)
         self.isActive = isActive
     
     def __str__(self):

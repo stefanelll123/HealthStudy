@@ -14,9 +14,7 @@ class StudyRequest():
         self.notes = []
         self.feedback = []
         self.isActive = True
-    
-    def __str__(self):
-        return json.dumps(self.__dict__)
+        
 schema = {
     'type': 'object',
     'properties': {

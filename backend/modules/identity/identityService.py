@@ -1,12 +1,13 @@
 import logging
 import jwt
 import os
+from bson import ObjectId
 
 from utils.databaseContext import identityDatabase
 from modules.identity.models.userLoginResponse import UserLoginResponse
 
 from utils.result import Result
-from utils.constants import ADMIN_ROLE
+from utils.constants import ADMIN_ROLE, USER_ROLE
 
 key = os.getenv('SECRET')
 users = identityDatabase.get_collection('users')
@@ -37,6 +38,18 @@ def deleteAccount(email):
     users.delete_one({"_id": databaseUser['_id']})
     logging.debug('User with email %s deleted.' % email)
     return Result()
+
+def assignUsers(request):
+    userIds = [ObjectId(x) for x in request.users]
+    print(request.studyId)
+    users.update_many({"_id": {"$in": userIds}}, {"$set": {"currentStudyId": request.studyId}} )
+
+    return Result()
+
+def getUserIds(count):
+    userIds = users.find({"$or": [{"currentStudyId": {"exists": False}}, {"currentStudyId": None}], "role": USER_ROLE}).limit(count)
+    
+    return Result([str(x["_id"]) for x in list(userIds)])
 
 def createToken(userId, email):
     token = jwt.encode(
