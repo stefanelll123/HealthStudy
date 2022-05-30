@@ -1,9 +1,15 @@
-.test {
-  p {
-    font-size: 30px;
+.container {
+  background: white;
+  min-height: calc(100vh - 130px);
+  padding: 30px;
+
+  .title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 30px;
   }
-  .btn {
-    width: 200px;
-    margin-top: 50px;
+
+  .subtitle {
+    margin-bottom: 30px;
   }
 }
