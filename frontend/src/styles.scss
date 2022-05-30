@@ -34,7 +34,7 @@ button {
   user-select: none;
 }
 
-input {
+input, textarea {
   width: 200px;
   line-height: 35px;
   border: 2px solid $color-border;
@@ -71,6 +71,27 @@ input {
       background-color: $color-primary-1;
     }
   }
+
+  &-outline {
+      background: #fff;
+      color: $color-primary;
+      border: 2px solid $color-primary;
+      transition: background 0.3s;
+
+    &:hover {
+      background-color: $color-secondary;
+    }
+  }
+
+  &-danger {
+    background: $color-danger;
+    color: #fff;
+    transition: background 0.3s;
+
+    &:hover {
+      background-color: $color-danger-1;
+    }
+  }
 }
 
 a {
@@ -101,4 +122,55 @@ a {
 
 .error {
   border-color: $color-danger;
+}
+
+.icon {
+  display: inline-block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition: filter 0.3s;
+
+  &-home {
+      width: 20px;
+      height: 20px;
+      margin-right: 20px;
+      transform: translate(-3px, 2px);
+      background-image: url(/assets/icons/home.svg);
+      filter: invert(66%) sepia(85%) saturate(5287%) hue-rotate(191deg) brightness(100%) contrast(102%);
+  }
+
+  &-studies {
+      width: 16px;
+      height: 16px;
+      margin-right: 24px;
+      background-image: url(/assets/icons/studies.svg);
+      filter: invert(66%) sepia(85%) saturate(5287%) hue-rotate(191deg) brightness(100%) contrast(102%);
+  }
+
+  &-feedback {
+      width: 21px;
+      height: 21px;
+      margin-right: 19px;
+      transform: translate(-3px, 3px);
+      background-image: url(/assets/icons/feedback.svg);
+      filter: invert(66%) sepia(85%) saturate(5287%) hue-rotate(191deg) brightness(100%) contrast(102%);
+  }
+
+  &-logout {
+      width: 20px;
+      height: 20px;
+      margin-right: 19px;
+      transform: translate(-1px, 1px);
+      background-image: url(/assets/icons/logout.svg);
+      filter: invert(66%) sepia(85%) saturate(5287%) hue-rotate(191deg) brightness(100%) contrast(102%);
+  }
+
+  &-trash {
+    width: 20px;
+    height: 20px;
+    margin-right: 19px;
+    transform: translate(-1px, 1px);
+    background-image: url(/assets/icons/trash.svg);
+    filter: invert(38%) sepia(55%) saturate(7141%) hue-rotate(348deg) brightness(98%) contrast(91%);
+  }
 }

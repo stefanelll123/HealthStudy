@@ -1,0 +1,60 @@
+@import "../../../../assets/scss/variables.scss";
+
+.studies {
+    &-title {
+      margin-bottom: 30px;
+
+      &-main {
+        font-size: 22px;
+        font-weight: 700;
+      }
+
+      .btn {
+        width: 120px;
+        margin-bottom: 0;
+      }
+    }
+}
+
+.study {
+    padding: 5px 10px;
+    border-bottom: 1px solid $color-border;
+
+    &:not(:first-of-type) {
+      margin-top: 10px;
+    }
+
+    &-title {
+      font-size: 18px;
+    }
+
+    &-badge {
+      font-size: 12px;
+      padding: 3px 0;
+      text-align: center;
+      width: 100px;
+      border-radius: 50px;
+      color: white;
+
+      &-done {
+        background: $color-primary;
+      }
+
+      &-active {
+        background: $color-teal;
+      }
+    }
+
+    &-subtitle {
+      font-size: 14px;
+      font-weight: 400;
+      margin-top: 5px;
+      font-family: RobotoMedium;
+      padding-bottom: 10px;
+
+      span {
+        font-family: RobotoRegular;
+        font-weight: 300;
+      }
+    }
+}

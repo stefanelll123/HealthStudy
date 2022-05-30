@@ -1,0 +1,24 @@
+<div class="studies-title flex spaced al-center">
+  <div class="studies-title-main">Studies</div>
+  <button [routerLink]="'/studies/new'" class="btn btn-primary">
+    Create new
+  </button>
+</div>
+<div class="studies-main">
+  <div class="study" *ngFor="let study of studiesService.studies">
+    <div class="flex spaced al-center">
+      <a class="study-title" [routerLink]="'/studies/' + study.id">
+        {{ study.name }}
+      </a>
+      <div
+        class="study-badge"
+        [ngClass]="'study-badge-' + (study.isActive ? 'active' : 'done')"
+      >
+        {{ study.isActive ? "Active" : "Done" }}
+      </div>
+    </div>
+    <div class="study-subtitle">
+      Testing: <span>{{ study.medicationTested }}</span>
+    </div>
+  </div>
+</div>

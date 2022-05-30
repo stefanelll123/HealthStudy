@@ -7,6 +7,9 @@ import { LoginComponent } from './features/auth/login/login.component';
 import { RegisterComponent } from './features/auth/register/register.component';
 import { FeedbackComponent } from './features/feedback/feedback.component';
 import { HomeComponent } from './features/home/home.component';
+import { StudiesDetailsComponent } from './features/studies/studies-details/studies-details.component';
+import { StudiesFormComponent } from './features/studies/studies-form/studies-form.component';
+import { StudiesListComponent } from './features/studies/studies-list/studies-list.component';
 import { StudiesComponent } from './features/studies/studies.component';
 
 const routes: Routes = [
@@ -24,7 +27,21 @@ const routes: Routes = [
       },
       {
         path: 'studies',
-        component: StudiesComponent
+        component: StudiesComponent,
+        children: [
+          {
+            path: '',
+            component: StudiesListComponent,
+          },
+          {
+            path: 'new',
+            component: StudiesFormComponent,
+          },
+          {
+            path: ':studyId',
+            component: StudiesDetailsComponent,
+          }
+        ]
       },
       {
         path: 'feedback',

@@ -1,0 +1,71 @@
+@import "../../../../assets/scss/variables.scss";
+
+.btn {
+    width: 200px;
+
+    &:last-of-type {
+        margin-bottom: 0;
+    }
+}
+
+.title {
+    margin-bottom: 30px;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.first-section {
+    margin-right: 30px;
+    padding-right: 30px;
+    border-right: 2px solid $color-border;
+}
+
+.flacons {
+    height: fit-content;
+}
+
+.flacon {
+    width: 200px;
+    margin: 0 30px 30px 0; 
+
+    &-title {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 10px;
+
+        .icon {
+            width: 16px;
+            height: 16px;
+            margin-right: 0;
+        }
+    }
+
+    &-group {
+        .form-group {
+            margin-bottom: 20px;
+        }
+    }
+
+    &-placebo {
+        margin-top: 10px;
+
+        &-main {
+            margin-top: 10px;
+
+            label {
+                margin-right: 20px
+            }
+        }
+    }
+
+    input[type=radio] {
+        width: unset;
+        margin: 0 5px 0 0;
+    }
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}

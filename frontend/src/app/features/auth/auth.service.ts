@@ -9,7 +9,7 @@ import { ILoginPayload, IRegisterPayload } from 'src/app/interfaces/auth';
 })
 export class AuthService {
 
-  baseURL = environment.apiUrl;
+  baseURL = environment.apiUrl + 'identity/';
   options: {headers: HttpHeaders};
 
   constructor(private http: HttpClient) { 
@@ -23,7 +23,7 @@ export class AuthService {
 
   login(form: ILoginPayload): Observable<any> {
 
-    const apiURL = this.baseURL + 'identity/login';
+    const apiURL = this.baseURL + 'login';
 
     return this.http.post(apiURL, form, this.options);  
   }
@@ -34,7 +34,7 @@ export class AuthService {
     delete formCopy.acceptTermsAndConditions;
     delete formCopy.confirmPassword;
 
-    const url = this.baseURL + 'identity/register';
+    const url = this.baseURL + 'register';
 
     return this.http.post(url, formCopy, this.options);
   }

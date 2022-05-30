@@ -9,6 +9,10 @@
         align-items: flex-end;
     }
 
+    &.al-start {
+        align-items: flex-start;
+    }
+
     &.al-stretch {
         align-items: stretch;
     }

@@ -2,15 +2,17 @@
   <div class="menu-first">
     <div class="menu-title">Menu</div>
     <div class="menu-container flex column center al-center">
-      <a
-        *ngFor="let item of menu"
-        [routerLink]="item.link"
-        [ngClass]="{ 'menu-item-selected': router.url.includes(item.link) }"
-        class="flex al-center"
-      >
-        <span class="icon" [ngClass]="'icon-' + item.icon"></span>
-        <span>{{ item.name }}</span>
-      </a>
+      <ng-container *ngFor="let item of menu">
+        <a
+          *ngIf="item.isVisible"
+          [routerLink]="item.link"
+          [ngClass]="{ 'menu-item-selected': router.url.includes(item.link) }"
+          class="flex al-center"
+        >
+          <span class="icon" [ngClass]="'icon-' + item.icon"></span>
+          <span>{{ item.name }}</span>
+        </a>
+      </ng-container>
     </div>
   </div>
   <div class="menu-second">

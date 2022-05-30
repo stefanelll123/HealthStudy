@@ -1,0 +1,123 @@
+<div class="title">Create study</div>
+<form action="" [formGroup]="form" class="flex">
+  <div class="flex column first-section">
+    <div class="form-group relative">
+      <input
+        type="text"
+        placeholder="Name"
+        formControlName="name"
+        [ngClass]="{
+          error: isFormSubmitted && !!form.get('name').errors
+        }"
+      />
+      <ng-container *ngIf="isFormSubmitted">
+        <p *ngIf="form.get('name').hasError('required')" class="form-error">
+          {{ errors.required }}
+        </p>
+      </ng-container>
+    </div>
+
+    <div class="form-group relative">
+      <input
+        type="text"
+        placeholder="What do you want to test?"
+        formControlName="medicationTested"
+        [ngClass]="{
+          error: isFormSubmitted && !!form.get('medicationTested').errors
+        }"
+      />
+      <ng-container *ngIf="isFormSubmitted">
+        <p
+          *ngIf="form.get('medicationTested').hasError('required')"
+          class="form-error"
+        >
+          {{ errors.required }}
+        </p>
+      </ng-container>
+    </div>
+
+    <div class="form-group relative">
+      <input
+        type="text"
+        placeholder="Start date"
+        formControlName="startDate"
+        [ngClass]="{
+          error: isFormSubmitted && !!form.get('startDate').errors
+        }"
+      />
+      <ng-container *ngIf="isFormSubmitted">
+        <p
+          *ngIf="form.get('startDate').hasError('required')"
+          class="form-error"
+        >
+          {{ errors.required }}
+        </p>
+        <p
+          *ngIf="form.get('startDate').hasError('dateFormat')"
+          class="form-error"
+        >
+          {{ errors.dateInvalidFormat }}
+        </p>
+      </ng-container>
+    </div>
+
+    <button class="btn btn-outline" (click)="addFlacon()">Add flacon</button>
+    <button class="btn btn-primary" (click)="submit()">Create</button>
+  </div>
+
+  <div class="flex wrap flacons" formArrayName="flacons">
+    <div
+      *ngFor="let control of flaconsAsArray().controls; let i = index"
+      [formGroupName]="i"
+      class="flacon"
+    >
+      <div class="flacon-title flex spaced al-center">
+        <div>Flacon #{{ i + 1 }}</div>
+        <button class="flacon-delete" *ngIf="i" (click)="removeFlacon(i)">
+          <span class="icon icon-trash"></span>
+        </button>
+      </div>
+
+      <div class="flacon-group">
+        <div class="form-group relative">
+          <input
+            type="text"
+            placeholder="Flacon code"
+            formControlName="flaconCode"
+            [ngClass]="{
+              error:
+                isFormSubmitted &&
+                !!flaconsAsArray().controls[i].get('flaconCode').errors
+            }"
+          />
+          <ng-container *ngIf="isFormSubmitted">
+            <p
+              *ngIf="
+                flaconsAsArray()
+                  .controls[i].get('flaconCode')
+                  .hasError('required')
+              "
+              class="form-error"
+            >
+              {{ errors.required }}
+            </p>
+          </ng-container>
+        </div>
+
+        <div class="flex column flacon-placebo">
+          <div class="flacon-placebo-title">Is it placebo flacon?</div>
+          <div class="flex flacon-placebo-main">
+            <label for="">
+              <input type="radio" [value]="true" formControlName="isPlacebo" />
+              Yes
+            </label>
+            <label for="">
+              <input type="radio" [value]="false" formControlName="isPlacebo" />
+              No
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

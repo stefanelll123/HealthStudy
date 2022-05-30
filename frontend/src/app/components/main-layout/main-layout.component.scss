@@ -1,5 +1,6 @@
 .content {
-    padding: 30px 30px 30px 280px;
-    min-height: calc(100vh - 70px);
+    padding: 30px;
+    height: calc(100vh - 70px);
+    width: 100%;
     overflow-y: auto;
 }

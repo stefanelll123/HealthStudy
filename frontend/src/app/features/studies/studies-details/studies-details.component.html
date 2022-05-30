@@ -1,0 +1,110 @@
+<ng-container *ngIf="studiesService.study as study">
+  <div class="study-title flex spaced al-center">
+    <div class="study-title-main">
+      <div>{{ study.name }}</div>
+      <div class="study-title-main-subtitle">
+        Testing: <span>{{ study.medicationTested }}</span>
+      </div>
+    </div>
+    <div class="study-title-main-actions">
+      <button
+        class="btn btn-primary"
+        *ngIf="study.isActive"
+        (click)="completeStudy()"
+      >
+        Complete
+      </button>
+      <button class="btn btn-danger" (click)="deleteStudy()">Delete</button>
+    </div>
+  </div>
+  <div class="study-participant" *ngFor="let participant of study.participants">
+    <div class="study-participant-title">
+      {{ participant.userFirstName + " " + participant.userLastName }}
+    </div>
+    <div class="flex spaced al-start">
+      <div class="study-participant-subtitle">
+        Flacon code: <span>{{ participant.flaconCode }}</span>
+      </div>
+      <button
+        class="study-participant-feedback"
+        (click)="openModal(participant)"
+      >
+        See feedback
+      </button>
+    </div>
+  </div>
+  <div class="study-notes">
+    <div class="study-notes-title">Notes</div>
+    <form action="" [formGroup]="form">
+      <div class="relative">
+        <textarea
+          name=""
+          id=""
+          cols="30"
+          rows="5"
+          placeholder="Description"
+          formControlName="content"
+          [ngClass]="{
+            error: isFormSubmitted && !!form.get('content').errors
+          }"
+        ></textarea>
+        <ng-container *ngIf="isFormSubmitted">
+          <p
+            *ngIf="form.get('content').hasError('required')"
+            class="form-error"
+          >
+            {{ errors.required }}
+          </p>
+        </ng-container>
+      </div>
+    </form>
+    <div class="flex end">
+      <button class="btn btn-primary" (click)="addNote()">Add note</button>
+    </div>
+    <div class="study-notes-list" *ngFor="let note of study.notes">
+      <div class="study-notes-list-title">
+        {{ note.creationDate }}
+      </div>
+      <div class="study-notes-list-subtitle">
+        {{ note.content }}
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<app-modal id="feedback-modal" (clickOutside)="closeModal()">
+  <h1>
+    {{ modalTitle }}
+  </h1>
+
+  <h2 *ngIf="!selectedFeedbacks?.length">
+    The user has not entered any feedback so far!
+  </h2>
+
+  <div class="modal-content" *ngIf="selectedFeedbacks?.length">
+    <div class="study-notes-list" *ngFor="let feedback of selectedFeedbacks">
+      <div class="study-notes-list-first flex spaced al-center">
+        <div class="study-notes-list-title">
+          {{ feedback.creationDate }}
+        </div>
+        <div
+          class="modal-badge"
+          [ngClass]="{
+            'modal-badge-primary': feedback.score > 7,
+            'modal-badge-pending': feedback.score < 8 && feedback.score > 4,
+            'modal-badge-danger': feedback.score < 5
+          }"
+        >
+          {{ feedback.score }} / 10
+        </div>
+      </div>
+      <div class="study-notes-list-subtitle">
+        {{ feedback.content }}
+      </div>
+    </div>
+  </div>
+
+  <div class="flex end">
+    <button class="btn btn-danger" (click)="closeModal()">Close</button>
+  </div>
+</app-modal>

@@ -14,6 +14,10 @@ import { MenuComponent } from './components/menu/menu.component';
 import { HeaderComponent } from './components/header/header.component';
 import { StudiesComponent } from './features/studies/studies.component';
 import { FeedbackComponent } from './features/feedback/feedback.component';
+import { StudiesListComponent } from './features/studies/studies-list/studies-list.component';
+import { StudiesDetailsComponent } from './features/studies/studies-details/studies-details.component';
+import { StudiesFormComponent } from './features/studies/studies-form/studies-form.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,11 @@ import { FeedbackComponent } from './features/feedback/feedback.component';
     MenuComponent,
     HeaderComponent,
     StudiesComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    StudiesListComponent,
+    StudiesDetailsComponent,
+    StudiesFormComponent,
+    ModalComponent
   ],
   imports: [
     HttpClientModule,

@@ -10,7 +10,7 @@
           placeholder="First name"
           formControlName="firstName"
           [ngClass]="{
-            error: isFormSubmitted && !!this.form.get('firstName').errors
+            error: isFormSubmitted && !!form.get('firstName').errors
           }"
         />
         <ng-container *ngIf="isFormSubmitted">
@@ -40,7 +40,7 @@
           placeholder="Last name"
           formControlName="lastName"
           [ngClass]="{
-            error: isFormSubmitted && !!this.form.get('lastName').errors
+            error: isFormSubmitted && !!form.get('lastName').errors
           }"
         />
         <ng-container *ngIf="isFormSubmitted">
@@ -70,7 +70,7 @@
           placeholder="Personal identification"
           formControlName="cnp"
           [ngClass]="{
-            error: isFormSubmitted && !!this.form.get('cnp').errors
+            error: isFormSubmitted && !!form.get('cnp').errors
           }"
         />
         <ng-container *ngIf="isFormSubmitted">
@@ -102,7 +102,7 @@
           placeholder="Email"
           formControlName="email"
           [ngClass]="{
-            error: isFormSubmitted && !!this.form.get('email').errors
+            error: isFormSubmitted && !!form.get('email').errors
           }"
         />
         <ng-container *ngIf="isFormSubmitted">
@@ -129,7 +129,7 @@
           placeholder="Password"
           formControlName="password"
           [ngClass]="{
-            error: isFormSubmitted && !!this.form.get('password').errors
+            error: isFormSubmitted && !!form.get('password').errors
           }"
         />
         <ng-container *ngIf="isFormSubmitted">
@@ -159,7 +159,7 @@
           placeholder="Confirm password"
           formControlName="confirmPassword"
           [ngClass]="{
-            error: isFormSubmitted && !!this.form.get('confirmPassword').errors
+            error: isFormSubmitted && !!form.get('confirmPassword').errors
           }"
         />
         <ng-container *ngIf="isFormSubmitted">

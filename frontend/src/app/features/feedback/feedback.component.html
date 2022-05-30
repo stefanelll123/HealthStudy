@@ -1,1 +1,60 @@
-<p>feedback works!</p>
+<div class="feedback">
+  <div class="feedback-title">
+    <div class="feedback-title-main">Add feedback</div>
+  </div>
+  <ng-container *ngIf="userService.currentUser.currentStudy">
+    <div class="form-section flex column al-center">
+      <form action="" [formGroup]="form">
+        <div class="relative">
+          <div class="form-feel-title">How do you feel today?</div>
+          <ng-container *ngIf="isFormSubmitted">
+            <p
+              *ngIf="form.get('score').hasError('required')"
+              class="form-error"
+              style="left: calc(50% - 50px)"
+            >
+              {{ errors.required }}
+            </p>
+          </ng-container>
+        </div>
+        <div class="form-feel-select flex">
+          <label class="radio" *ngFor="let in of counter(10); let i = index">
+            <input type="radio" [value]="i + 1" formControlName="score" />
+            <span>{{ i + 1 }}</span>
+          </label>
+        </div>
+
+        <div class="relative">
+          <textarea
+            name=""
+            id=""
+            cols="30"
+            rows="10"
+            placeholder="Tell us in some rows how are you feeling!"
+            formControlName="content"
+            [ngClass]="{
+              error: isFormSubmitted && !!form.get('content').errors
+            }"
+          ></textarea>
+
+          <ng-container *ngIf="isFormSubmitted">
+            <p
+              *ngIf="form.get('content').hasError('required')"
+              class="form-error"
+            >
+              {{ errors.required }}
+            </p>
+          </ng-container>
+        </div>
+      </form>
+
+      <button class="btn btn-primary" (click)="submit()">Send</button>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="!userService.currentUser.currentStudy">
+    <div>
+      You are not assigned to any study, wait for a doctor to choose you!
+    </div>
+  </ng-container>
+</div>
